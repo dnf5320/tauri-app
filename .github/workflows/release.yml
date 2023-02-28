@@ -49,12 +49,17 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 7
+          run_install: true
 
       # 安装 Node.js
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'pnpm'
 
       # 安装 Rust
       - name: Install Rust stable
@@ -80,21 +85,6 @@ jobs:
       # 可选，如果需要使用 rsw 构建 wasm，则安装 rsw
       - name: Install rsw
         run: cargo install rsw
-
-      # 获取 pnpm 缓存路径
-      - name: Get pnpm cache directory path
-        id: pnpm-cache-dir-path
-        run: echo "::set-output name=dir::$(pnpm config get cacheFolder)"
-
-      # 使用 pnpm 缓存
-      - name: pnpm cache
-        uses: actions/cache@v2
-        id: pnpm-cache # use this to check for `cache-hit` (`steps.pnpm-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.pnpm-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
 
       # 安装依赖执行构建，以及推送 github release
       - name: Install app dependencies and build it
