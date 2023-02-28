@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tauri build",
-    "vite:dev": "vite dev",
+    "vite:dev": "vite dev --host",
     "vite:build": "vite build",
     "preview": "vite preview",
     "tauri:dev": "tauri dev"
