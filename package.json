@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "tauri build",
+    "vite:dev": "vite dev",
+    "vite:build": "vite build",
     "preview": "vite preview",
-    "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:dev": "tauri dev"
   },
   "dependencies": {
     "vue": "^3.2.45",
