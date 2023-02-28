@@ -8,9 +8,10 @@
   },
   "package": {
     "productName": "wanglaoshi",
-    "version": "0.0.0"
+    "version": "../package.json"
   },
   "tauri": {
+    "macOSPrivateApi": false,
     "allowlist": {
       "all": false,
       "shell": {
@@ -73,7 +74,8 @@
         "title": "wanglaoshi",
         "hiddenTitle": true,
         "width": 800,
-        "center": true
+        "center": true,
+        "transparent": false
       }
     ]
   }
